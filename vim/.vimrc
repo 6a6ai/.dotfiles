@@ -1,4 +1,4 @@
-" turn off vi compatibility:
+" turn off vi compatibility
 set nocompatible
 
 " load filetype-specific indent files
@@ -101,8 +101,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 " Initialize plugin system
 call plug#end()
 
@@ -345,3 +347,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+nmap <leader>gh :diffget //3<cr>
+nmap <leader>gf :diffget //2<cr>
+nmap <leader>gs :G<cr>
+
