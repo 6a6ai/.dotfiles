@@ -1,3 +1,4 @@
+echo 'loading aliases'
 alias fzfp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias cd..='cd ../'
 alias ..='cd ../'

@@ -1,7 +1,12 @@
+scripts_dir=${BASH_SOURCE%/*}
+promts_file="$scripts_dir/prompt.bash"
+aliases_file="$scripts_dir/aliases.bash"
+path_exports_file="$scripts_dir/path_exports.bash"
+
 # source common files
-[ -f ./prompt.bash ] && source ./prompt.bash
-[ -f ./aliases.bash ] && source ./aliases.bash
-[ -f ./path_exports.bash ] && source ./path_exports.bash
+[ -f "$promts_file" ] && source "$promts_file" 
+[ -f "$aliases_file" ] && source "$aliases_file" 
+[ -f "$path_exports_file" ] && source "$path_exports_file" 
 
 # backup current .vimrc and create a symlink to one stored under $HOME/.dotfiles/vim/.vimrc
 [ -f ~/.vimrc ] && mv -iv ~/.vimrc ~/.vimrc.custom_backup

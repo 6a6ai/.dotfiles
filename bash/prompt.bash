@@ -1,3 +1,4 @@
+echo 'applying prompts'
 set -o vi
 
 #set prompt
