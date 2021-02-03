@@ -38,6 +38,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-utils/vim-man'
 Plug 'tpope/vim-surround'
@@ -62,6 +64,8 @@ let g:ctrlp_user_command=['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude
 let g:netrw_banner=0
 let g:netrw_winsize=25
 let g:ctrlp_use_caching=0
+let g:fzf_layout={'window': {'width':0.8, 'height':0.8}}
+let $FZF_DEFAULT_OPTS='--reverse'
 
 " ******** tune nerdcommenter ********
 " Add spaces after comment delimiters by default
@@ -281,3 +285,4 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nnoremap <leader>gh :diffget //3<cr>
 nnoremap <leader>gf :diffget //2<cr>
 nnoremap <leader>gs :G<cr>
+nnoremap <leader>gc :GBranches<CR>

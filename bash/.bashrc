@@ -8,11 +8,6 @@ path_exports_file="$scripts_dir/path_exports.bash"
 [ -f "$aliases_file" ] && source "$aliases_file" 
 [ -f "$path_exports_file" ] && source "$path_exports_file" 
 
-# backup current .vimrc and create a symlink to one stored under $HOME/.dotfiles/vim/.vimrc
-[ -f ~/.vimrc ] && mv -iv ~/.vimrc ~/.vimrc.custom_backup
-ln -sv ~/.dotfiles/vim/.vimrc ~/ 
-
-
 #source fzf commands
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
