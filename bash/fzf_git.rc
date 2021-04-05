@@ -1,3 +1,4 @@
+echo "loading fzf commands"
 #taken from https://github.com/junegunn/fzf/wiki/examples#git
 
 # fbr - checkout git branch
