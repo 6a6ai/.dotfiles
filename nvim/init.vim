@@ -37,6 +37,17 @@ set showcmd " display leader
 " add angle brackets to be supported by % hotkey
 set mps+=<:>
 
+" Ignore files
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=**/coverage/*
+set wildignore+=**/node_modules/*
+set wildignore+=**/android/*
+set wildignore+=**/ios/*
+set wildignore+=**/.git/*
+set wildignore+=**/.idea/*
+set wildignore+=**/.pytest_cache/*
+
 " load plugins with Plug
 call plug#begin('~/.vim/plugged')
 " On-demand loading
@@ -60,15 +71,18 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " treesitter stuff
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " test in test
 Plug 'vim-test/vim-test'
 
 " Initialize plugin system
 call plug#end()
 
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+lua require("my_inits")
+
+"lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 " apply color theme
 set bg=dark

@@ -1,0 +1,81 @@
+set nocompatible
+set ignorecase
+set hlsearch                      " highlight search occurrences
+set incsearch                     " show search results while typing
+set smartcase
+set wrapscan                      " searches wrap around the end of the file
+set number relativenumber
+set surround
+set argtextobj
+set highlightedyank
+set scrolloff=5 sidescrolloff=10  " keep some lines before and after the cursor visible
+set showcmd
+set cindent
+set commentary
+set showmode
+set NERDTree
+" Copy to system clipboard as well
+set clipboard+=unnamed
+" Use Idea to join lines smartly
+set ideajoin
+
+:autocmd InsertEnter * set cul
+:autocmd InsertLeave * set nocul
+
+" edit ideavim config
+let mapleader=" "
+map <leader>vv :e ~/.ideavimrc<CR>
+map <leader>sv :source ~/.ideavimrc<CR>
+
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap jj <Esc>
+
+" <vimrc> remap NERDTreeToggle
+map <leader>t :NERDTreeToggle<CR>
+map <leader>lf :action LocateInSolutionView<CR>
+" <vimrc> remap standard find
+map / :action Find<CR>
+" <vimrc> remap (coc-format-selected) to the Reformat Code action 
+xmap <leader>rf :action ReformatCode<CR><C-[>
+nmap <leader>rf :action ReformatCode<CR>
+
+" <vimrc> remap (coc-rename)
+nmap <leader>rn :action RenameElement<CR>
+
+" <ideavim> to start debug
+map <leader>d :action Debug<CR>
+" <ideavim> toggle the breakpoint on the current line
+map <leader>b :action ToggleLineBreakpoint<CR>
+
+nmap <leader>gi :action GotoImplementation<cr>
+nmap <leader>gd :action GotoDeclaration<cr>
+nmap <leader>gtd :action GotoTypeDeclaration<cr>
+map <leader>fr :action ShowUsages<cr>
+map <leader>sh :action ParameterInfo<cr>
+map <leader>a :action ShowIntentionActions<CR>
+map <leader>fs :action FileStructurePopup<cr>
+map <leader>fws :action FindInPath<cr>
+map <leader>ut :action ActivateUnitTestsToolWindow<cr> 
+map <leader>gss :action ActivateVersionControlToolWindow<cr>
+
+" copy/paste things
+vnoremap <leader>p "_dP
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
+nnoremap <leader>D "_D
+vnoremap <leader>d "_d
+
+" <ideavim> only, tab navigation actions
+map <leader>] :action NextTab<cr>
+map <leader>[ :action PreviousTab<cr>
+
+" <ideavim> only, indent 
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+
