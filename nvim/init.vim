@@ -4,6 +4,7 @@ let &packpath=&runtimepath
 set nocompatible  " turn off vi compatibility:
 set noerrorbells  " no sounds
 filetype indent on " load filetype-specific indent files
+filetype on " detect file type, see autocmd for csharp
 syntax enable           " enable syntax processing
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
@@ -15,7 +16,7 @@ set ruler " show ruler (line,col)
 set nocursorline          " no highlight current line
 set wildmenu " visual autocomplete for command menu
 set nolazyredraw " redraw only when we need to.
-set showmatch " highlight matching [{()}]
+set noshowmatch " highlight matching [{()}]
 set foldenable " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10 " 10 nested fold max
@@ -31,7 +32,7 @@ set undofile
 set colorcolumn=120
 set nowrap
 set signcolumn
-set timeoutlen=400
+set timeoutlen=600
 highlight ColorColumn ctermbg=0 guibg=grey
 set showcmd " display leader
 " add angle brackets to be supported by % hotkey
@@ -47,6 +48,9 @@ set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 set wildignore+=**/.idea/*
 set wildignore+=**/.pytest_cache/*
+set wildignore+=**/db_dumps/*
+set wildignore+=**/.DS_Store/*
+set wildignore+=.DS_Store
 
 " load plugins with Plug
 call plug#begin('~/.vim/plugged')
@@ -76,6 +80,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " test in test
 Plug 'vim-test/vim-test'
+Plug 'puremourning/vimspector'
 
 " Initialize plugin system
 call plug#end()
@@ -121,7 +126,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " use jj to quit insert mode
-imap jj <ESC>
+imap jk <ESC>
 " highlight last inserted text
 nnoremap gV `[v`]
 
@@ -176,6 +181,8 @@ augroup MY_GROUP_666
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
+autocmd FileType cs setlocal errorformat=\ %#%f(%l\\\,%c):\ %m
+
 "*************************
 "**** code completion ****
 "*************************
@@ -188,7 +195,7 @@ set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
+set updatetime=750
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -219,9 +226,8 @@ EOF
 :lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
 
 " experimental bindings
-nnoremap <A-B> :!dotnet build<cr>
-nnoremap <A-T> :!dotnet test<cr>
-nnoremap <A-R> :!dotnet run<cr>
+nnoremap <A-B> :make comp<cr>
+nnoremap <A-R> :make run<cr>
 
 nmap <leader>tn :TestNearest<CR>
 nmap <leader>tf :TestFile<CR>
@@ -230,3 +236,8 @@ nmap <leader>tl :TestLast<CR>
 nmap <leader>tv :TestVisit<CR>
 let test#enabled_runners = ["csharp#dotnettest"]
 
+let g:vimspector_enable_mappings = 'HUMAN'
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
